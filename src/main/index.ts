@@ -2,6 +2,7 @@ import 'reflect-metadata'
 import { ApolloServer } from '@apollo/server'
 import { startStandaloneServer } from '@apollo/server/standalone'
 import gql from 'graphql-tag'
+import { makeReadCardResolver } from './factories/query.factories'
 
 export async function bootstrap (): Promise<void> {
   const typeDefs = gql`
@@ -13,8 +14,8 @@ export async function bootstrap (): Promise<void> {
     typeDefs,
     resolvers: {
       Query: {
-        helloworld: () => {
-          return 'hello'
+        helloworld: async () => {
+          return await makeReadCardResolver().handle()
         }
       }
     }
