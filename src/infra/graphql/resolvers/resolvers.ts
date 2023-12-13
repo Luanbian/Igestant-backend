@@ -1,4 +1,4 @@
-import { makeReadCardResolver } from '../factories/query.factories'
+import { makeReadCardResolver } from '../../../main/factories/query.factories'
 
 const resolvers = {
   Query: {
