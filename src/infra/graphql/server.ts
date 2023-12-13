@@ -1,5 +1,5 @@
 import { ApolloServer } from '@apollo/server'
-import resolvers from './resolvers/resolvers'
+import { resolvers } from '../graphql/resolvers/index'
 import { loadFilesSync } from '@graphql-tools/load-files'
 
 export const makeServer = (schemaPath: string): ApolloServer => {
