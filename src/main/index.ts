@@ -3,11 +3,13 @@ import { ApolloServer } from 'apollo-server'
 import { buildSchema } from 'type-graphql'
 import path from 'path'
 import { ReadCardResolver } from '../resolvers/read.card.resolver'
+import { CreateCardResolver } from '../resolvers/create.card.resolver'
 
 export async function bootstrap (): Promise<void> {
   const schema = await buildSchema({
     resolvers: [
-      ReadCardResolver
+      ReadCardResolver,
+      CreateCardResolver
     ],
     emitSchemaFile: path.resolve(__dirname, 'schema.gql')
   })
