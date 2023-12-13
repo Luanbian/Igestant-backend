@@ -1,12 +1,18 @@
 {
 	"compilerOptions": {
 		"outDir": "./dist",
+		"rootDirs": ["src"],
+		"lib": ["es2020"],
 		"module": "CommonJS",
 		"strictNullChecks" :true,
+		"target": "es2020",
 		"esModuleInterop":true,
 		"allowJs":true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
-		"strictPropertyInitialization": false
+		"strictPropertyInitialization": false,
+		"moduleResolution": "node",
+		"types": ["node"],
+		"skipLibCheck": true
 	}
 }

@@ -1,22 +1,30 @@
 import 'reflect-metadata'
-import { ApolloServer } from 'apollo-server'
-import { buildSchema } from 'type-graphql'
-import path from 'path'
-import { ReadCardResolver } from '../resolvers/read.card.resolver'
-import { CreateCardResolver } from '../resolvers/create.card.resolver'
+import { ApolloServer } from '@apollo/server'
+import { startStandaloneServer } from '@apollo/server/standalone'
+import gql from 'graphql-tag'
 
 export async function bootstrap (): Promise<void> {
-  const schema = await buildSchema({
-    resolvers: [
-      ReadCardResolver,
-      CreateCardResolver
-    ],
-    emitSchemaFile: path.resolve(__dirname, 'schema.gql')
+  const typeDefs = gql`
+    type Query {
+      helloworld: String!
+    }
+  `
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers: {
+      Query: {
+        helloworld: () => {
+          return 'hello'
+        }
+      }
+    }
   })
 
-  const server = new ApolloServer({ schema })
-
-  const { url } = await server.listen()
+  const { url } = await startStandaloneServer(server, {
+    listen: {
+      port: 4000
+    }
+  })
   console.log(`server running at port ${url}`)
 }
 bootstrap().then(() => {}).catch((err) => { console.log(err) })
