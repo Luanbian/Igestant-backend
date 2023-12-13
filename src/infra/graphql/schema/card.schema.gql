@@ -1,3 +1,11 @@
+type Card {
+  id: String
+  question: String
+  shortAnswer: String
+  longAnswer: String
+  reference: String
+}
+
 type Query {
-  readCard: String!
+  readCard: Card!
 }

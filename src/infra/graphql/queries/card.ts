@@ -1,5 +1,8 @@
+import { makeReadCard } from '../../../data/factories'
 import { makeResolver } from '../factories'
 
 export const readCard = makeResolver(async () => {
-  return 'hello world from makeResolver'
+  const readCard = makeReadCard()
+  const result = await readCard.perform()
+  return result
 })
