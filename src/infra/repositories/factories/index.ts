@@ -8,6 +8,9 @@ import { PrismaUpdateCard } from '../update.card.repository'
 import { type updateCardProps } from '../../../data/usecases/update.card'
 import { type DeleteRepository } from '../protocols/delete.protocol'
 import { PrismaDeleteCard } from '../delete.card.repository'
+import { type FindByRepository } from '../protocols/find.by.protocol'
+import { type User } from '@prisma/client'
+import { PrismaFindUserByEmail } from '../find.user.by.email.repository'
 
 export const makeFindAllCardsRepository = (): FindAllRepository<Card> => {
   return new PrismaFindAllCards()
@@ -23,4 +26,8 @@ export const makeUpdateCardRepository = (): UpdateRepository<updateCardProps, Ca
 
 export const makeDeleteCardRepository = (): DeleteRepository<Card> => {
   return new PrismaDeleteCard()
+}
+
+export const makeFindUserByEmail = (): FindByRepository<{ email: string }, User> => {
+  return new PrismaFindUserByEmail()
 }
