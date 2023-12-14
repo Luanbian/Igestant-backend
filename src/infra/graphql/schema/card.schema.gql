@@ -13,10 +13,18 @@ input CreateCardInput {
   reference: String!
 }
 
+input UpdateCardInput {
+  question: String
+  shortAnswer: String
+  longAnswer: String
+  reference: String
+}
+
 type Query {
   readCard: [Card]!
 }
 
 type Mutation {
   createCard(input: CreateCardInput!): Card!
+  updateCard(input: UpdateCardInput): String
 }
