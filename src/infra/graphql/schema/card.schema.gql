@@ -25,6 +25,11 @@ input DeleteCardInput {
   id: String!
 }
 
+input loginInput {
+  email: string
+  password: string
+}
+
 type Query {
   readCard: [Card]!
 }
@@ -33,4 +38,5 @@ type Mutation {
   createCard(input: CreateCardInput!): Card!
   updateCard(input: UpdateCardInput): Card
   deleteCard(input: DeleteCardInput): Card
+  loginUser(input: loginInput): String
 }
