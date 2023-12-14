@@ -1,13 +1,11 @@
-import { Card } from '../../domain/entities/card'
+import { type Card } from '../../domain/entities/card'
+import { type FindAllRepository } from '../../infra/repositories/protocols/find.all.protocol'
 
 export class ReadCard {
-  public async perform (): Promise<Card> {
-    return Card.create({
-      id: 'random_id',
-      question: 'é isso ai?',
-      shortAnswer: 'sim',
-      longAnswer: 'mas depende',
-      reference: 'Dr. talvez'
-    })
+  constructor (private readonly findAllRepository: FindAllRepository<Card>) {}
+
+  public async perform (): Promise<Card[]> {
+    const result = await this.findAllRepository.exec()
+    return result
   }
 }

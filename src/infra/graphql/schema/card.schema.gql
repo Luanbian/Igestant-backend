@@ -7,5 +7,5 @@ type Card {
 }
 
 type Query {
-  readCard: Card!
+  readCard: [Card]!
 }
