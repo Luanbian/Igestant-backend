@@ -17,8 +17,4 @@ export class User {
     this.email = props.email
     this.password = props.password
   }
-
-  public static create (input: UserProps): User {
-    return new User(input)
-  }
 }
