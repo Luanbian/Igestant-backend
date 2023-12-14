@@ -17,3 +17,10 @@ model Feed {
   longAnswer String @db.Text
   reference String
 }
+
+model User {
+  id String @id @db.Char(36)
+  name String
+  email String
+  password String
+}
