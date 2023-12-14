@@ -1,5 +1,5 @@
-import * as createCard from '../mutations/card'
+import * as card from '../mutations/card'
 
 export const mutations = {
-  ...createCard
+  ...card
 }

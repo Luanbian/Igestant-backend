@@ -1,5 +1,5 @@
-import * as readCard from './card'
+import * as card from './card'
 
 export const queries = {
-  ...readCard
+  ...card
 }
