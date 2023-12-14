@@ -10,6 +10,9 @@
     "typecheck": "tsc --noEmit",
     "start": "ts-node --transpile-only src/main/index.ts"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seeds/index.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,6 +20,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.10.4",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "dotenv": "^16.3.1",
     "eslint": "^8.55.0",
     "eslint-config-standard-with-typescript": "^42.0.0",
     "eslint-plugin-import": "^2.29.0",
