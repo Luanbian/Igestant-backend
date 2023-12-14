@@ -1,5 +1,6 @@
 import { type User } from '../../domain/entities/user'
 import { type FindByRepository } from '../../infra/repositories/protocols/find.by.protocol'
+import { type Authenticate } from '../auth/protocol/authenticate.protocol'
 import { type Encrypter } from '../criptography/protocols/encripter.protocol'
 
 interface LoginProps {
@@ -10,13 +11,15 @@ interface LoginProps {
 export class Login {
   constructor (
     private readonly findUserByEmail: FindByRepository<{ email: string }, User>,
-    private readonly encrypter: Encrypter
+    private readonly encrypter: Encrypter,
+    private readonly authenticate: Authenticate
   ) {}
 
   public async perform (input: LoginProps): Promise<string> {
     const user = await this.findUser(input.email)
     await this.checkPassword(input.password, user.password)
-    return 'ok'
+    const token = await this.authenticate.generateToken(user)
+    return token
   }
 
   private async findUser (email: string): Promise<User> {

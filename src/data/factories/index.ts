@@ -44,5 +44,6 @@ export const makeAuthenticate = (): Authenticate => {
 export const makeLogin = (): Login => {
   const findUserByEmail = makeFindUserByEmail()
   const encrypter = makeEncrypter()
-  return new Login(findUserByEmail, encrypter)
+  const authenticate = makeAuthenticate()
+  return new Login(findUserByEmail, encrypter, authenticate)
 }
