@@ -26,8 +26,8 @@ input DeleteCardInput {
 }
 
 input loginInput {
-  email: string
-  password: string
+  email: String
+  password: String
 }
 
 type Query {
