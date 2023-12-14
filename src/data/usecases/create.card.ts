@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import { Card } from '../../domain/entities/card'
-import { type CreateRepository } from '../../infra/repositories/protocols/create.card.protocol'
+import { type CreateRepository } from '../../infra/repositories/protocols/create.protocol'
 
 interface createCardProps {
   question: string
