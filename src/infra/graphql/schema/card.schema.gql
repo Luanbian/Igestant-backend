@@ -27,5 +27,5 @@ type Query {
 
 type Mutation {
   createCard(input: CreateCardInput!): Card!
-  updateCard(input: UpdateCardInput): String
+  updateCard(input: UpdateCardInput): Card
 }

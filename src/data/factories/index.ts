@@ -1,4 +1,4 @@
-import { makeCreateCardRepository, makeFindAllCardsRepository } from '../../infra/repositories/factories'
+import { makeCreateCardRepository, makeFindAllCardsRepository, makeUpdateCardRepository } from '../../infra/repositories/factories'
 import { CreateCard } from '../usecases/create.card'
 import { ReadCard } from '../usecases/read.card'
 import { UpdateCard } from '../usecases/update.card'
@@ -14,5 +14,6 @@ export const makeCreateCard = (): CreateCard => {
 }
 
 export const makeUpdateCard = (): UpdateCard => {
-  return new UpdateCard()
+  const updateCardRepository = makeUpdateCardRepository()
+  return new UpdateCard(updateCardRepository)
 }
