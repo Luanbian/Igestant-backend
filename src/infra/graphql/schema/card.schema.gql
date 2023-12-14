@@ -21,6 +21,10 @@ input UpdateCardInput {
   reference: String
 }
 
+input DeleteCardInput {
+  id: String!
+}
+
 type Query {
   readCard: [Card]!
 }
@@ -28,4 +32,5 @@ type Query {
 type Mutation {
   createCard(input: CreateCardInput!): Card!
   updateCard(input: UpdateCardInput): Card
+  deleteCard(input: DeleteCardInput): Card
 }
