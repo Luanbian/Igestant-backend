@@ -1,4 +1,6 @@
 import { makeCreateCardRepository, makeDeleteCardRepository, makeFindAllCardsRepository, makeUpdateCardRepository } from '../../infra/repositories/factories'
+import { BcryptAdapter } from '../criptography/bcrypt.adapter'
+import { type Encrypter } from '../criptography/protocols/encripter.protocol'
 import { CreateCard } from '../usecases/create.card'
 import { DeleteCard } from '../usecases/delete.card'
 import { ReadCard } from '../usecases/read.card'
@@ -22,4 +24,9 @@ export const makeUpdateCard = (): UpdateCard => {
 export const makeDeleteCard = (): DeleteCard => {
   const deleteCardRepository = makeDeleteCardRepository()
   return new DeleteCard(deleteCardRepository)
+}
+
+export const makeEncrypter = (): Encrypter => {
+  const salt = 12
+  return new BcryptAdapter(salt)
 }
