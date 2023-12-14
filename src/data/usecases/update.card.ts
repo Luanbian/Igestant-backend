@@ -1,4 +1,5 @@
 interface updateCardProps {
+  id: string
   question?: string
   shortAnswer?: string
   longAnswer?: string
