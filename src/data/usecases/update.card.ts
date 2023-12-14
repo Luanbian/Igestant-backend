@@ -1,4 +1,4 @@
-interface updateCardProps {
+export interface updateCardProps {
   id: string
   question?: string
   shortAnswer?: string
