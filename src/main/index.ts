@@ -2,19 +2,13 @@ import 'reflect-metadata'
 import { startStandaloneServer } from '@apollo/server/standalone'
 import { makeServer } from '../infra/graphql/server'
 import path from 'path'
-import { middleware } from './middleware'
-
-export interface Context {
-  token?: string
-}
+import context from '../infra/graphql/contexts'
 
 export async function bootstrap (): Promise<void> {
   const schemaPath = path.resolve(__dirname, '../infra/graphql/schema/*.gql')
   const server = makeServer(schemaPath)
-  const { url } = await startStandaloneServer<Context>(server, {
-    context: async ({ req }) => ({
-      token: await middleware(req.headers.authorization)
-    }),
+  const { url } = await startStandaloneServer(server, {
+    context,
     listen: {
       port: 4000
     }
