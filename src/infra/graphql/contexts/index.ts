@@ -5,22 +5,16 @@ export interface Context {
 }
 
 const context = async ({ req }): Promise<Context> => {
-  const { body, headers } = req
-  const { operationName } = body
+  const allowedOperations = ['readCard', 'IntrospectionQuery', 'LoginUser']
 
-  if (isCardOperation(operationName as string)) {
-    const authToken: string = headers.authorization ?? ''
+  if (!allowedOperations.includes(req.body.operationName as string)) {
+    const authToken: string = req.headers.authorization ?? ''
     return {
       token: await middleware(authToken)
     }
   }
 
   return {}
-}
-
-const isCardOperation = (operationName: string): boolean => {
-  const cardOperations = ['createCard', 'updateCard', 'deleteCard', 'Mutation']
-  return cardOperations.includes(operationName)
 }
 
 export default context
