@@ -5,9 +5,13 @@ export interface Context {
 }
 
 const context = async ({ req }): Promise<Context> => {
-  return {
-    token: await middleware(req.headers.authorization as string)
+  if (req.body.operationName !== 'IntrospectionQuery' && req.body.operationName !== 'LoginUser') {
+    const authToken: string = req.headers.authorization ?? ''
+    return {
+      token: await middleware(authToken)
+    }
   }
+  return {}
 }
 
 export default context
